@@ -1,11 +1,12 @@
-import express from "express";
+
 import cors from "cors";
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
+import express, { Express, Request, Response } from "express";
+const app: Express = express();
 
 dotenv.config();
 
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -24,7 +25,7 @@ const pool = mysql.createPool({
 });
 
 // API endpoint to handle contact form submissions
-app.post("/api/contact", async (req, res) => {
+app.post("/api/contact", async (req: Request, res: Response) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
