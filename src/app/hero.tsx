@@ -16,16 +16,18 @@ function Hero() {
             Welcome to my <br /> Portofolio! <br/> React Developer.. . !
           </Typography>
           <Typography
-            variant="lead"
-            className="mb-4 !text-gray-500 md:pr-16 xl:pr-28"
-          >
-            I&apos;Hi I'm . LucifeR
-          I'm a versatile professional with expertise in web development, data analysis, and software development
+              variant="lead"
+              className="mb-4 !text-gray-500 md:pr-16 xl:pr-28"
+            >
+              Hi, I&apos;m LucifeR.
+              I&apos;m a versatile professional with expertise in web development, 
+              data analysis, and software development.
+            
+              Bringing creativity and efficiency to every project. Proficient in HTML, 
+              CSS, and JavaScript, you&apos;ll get a glimpse of my journey in the world 
+              of web development, where creativity meets functionality.
+            </Typography>
 
-          Bringing creativity and efficiency to every project. Proficient in HTML, CSS, and JavaScript, 
-            you&apos;ll get a glimpse of my journey in the world of web
-            development, where creativity meets functionality.
-          </Typography>
           <div className="grid">
             <Typography
               variant="small"
