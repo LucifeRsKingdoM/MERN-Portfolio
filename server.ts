@@ -1,12 +1,11 @@
-
+import express, { Request, Response } from "express";
 import cors from "cors";
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
-import express, { Express, Request, Response } from "express";
-const app: Express = express();
 
 dotenv.config();
 
+const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -25,24 +24,30 @@ const pool = mysql.createPool({
 });
 
 // API endpoint to handle contact form submissions
-app.post("/api/contact", async (req: Request, res: Response) => {
-  const { name, email, message } = req.body;
+app.post(
+  "/api/contact",
+  async (req: Request, res: Response): Promise<void> => {
+    const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
+    if (!name || !email || !message) {
+      res.status(400).json({ error: "All fields are required" });
+      return;
+    }
 
-  try {
-    await pool.execute(
-      "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
-      [name, email, message]
-    );
-    res.status(201).json({ success: true, message: "Message saved successfully" });
-  } catch (error) {
-    console.error("Database Error:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    try {
+      await pool.execute(
+        "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
+        [name, email, message]
+      );
+      res
+        .status(201)
+        .json({ success: true, message: "Message saved successfully" });
+    } catch (error) {
+      console.error("Database Error:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
-});
+);
 
 // Start the server
 app.listen(PORT, () => {
